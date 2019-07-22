@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import USA from './USA';
+
+
+const colors = ['red', 'blue', 'green'];
+
+class App extends React.Component {
+
+  state = {
+    AK: 'red'
+  }
+
+  changeStateColor = event => {
+    this.setState({
+      [event.target.id]: colors[ (colors.indexOf(this.state[event.target.id]) + 1) % colors.length ],
+    });
+  }
+  
+  render(){
+    return (
+      <div className='App'>
+        <USA colors={this.state} onClick={this.changeStateColor}/>
+      </div>
+    );
+  }
+};
 
 export default App;
